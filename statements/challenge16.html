@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="https://contest.tuenti.net/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/normalize.css">
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/contest.css">
+ 	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="Tuenti%20Challenge%203_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Tuenti%20Challenge%203_files/widgets.js"></script>
+
+	<title>Tuenti Challenge 3</title>
+</head>
+
+<body>
+	<header>
+		<div class="grid">
+			<h1 class="logo h-left"><a href="https://contest.tuenti.net/">Tuenti Challenge 3</a></h1>
+			<nav class="h-right">
+				<ul>
+					<li class="none"><a href="https://contest.tuenti.net/">Home</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/about">Info</a></li>
+					<li class="active"><a href="https://contest.tuenti.net/Challenges">Challenges</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/tools">Tools</a></li>
+									
+				</ul>
+			</nav>
+		</div>		
+	</header><div class="content">
+		<div class="grid">
+			<div class="problem">
+
+<h2><strong>Challenge 16</strong> - Legacy code</h2>
+<nav class="h-right">
+	<a class="" href="https://contest.tuenti.net/Challenges?id=15"><span>« Prev</span></a>
+	<a class="" href="https://contest.tuenti.net/Challenges?id=17"><span>Next »</span></a>
+</nav>
+
+<p>At Tuenti, we have a lot of legacy code -
+not everything is PHP and JavaScript. We have scripts in different languages running all over the place. As 
+a part of the migration to the new Tuenti, we found a very, very old undocumented script written for a Turing Machine.
+It has been working for a while and it has never given us a problem so we've left it as is, but now 
+our Turing Machine broke and there's no techical support for it.</p>
+<p>We don't really know what the algorithm programmed for this Turing Machine does, we just gave it the input data and 
+it returned the right output. The task now is to create something to do the same thing. It 
+would be a good idea to think about the scalability now, because it always seemed to take a long time to process some 
+type of inputs.</p>
+<p>All we know about our broken Turing Machine is:
+</p><ul>
+	<li>it has an almost infinite tape to the right, but not to the left</li>
+	<li>the language it used had only 6 chars: 0, 1, #, $, %, _</li>
+	<li>the '_' was the default character for the tape, equivalent to a blank space</li>
+	<li>it had to perform a write operation on each state transitition</li>
+	<li>it could stay in the same place after a state transition, so the valid movements were defined by 
+	R(ight), L(eft) and S(tay)</li>
+	<li>all of its programs started at the 'start' state with a '#' on it's tape head</li>
+	<li>the 'end' state indicated the end of the execution</li>
+	<li>the instructions format was the following:
+		<code>state,character:character_to_write,movement,new_state</code></li>
+</ul>
+<p></p>
+<p>And most importantly, we were able to recover the script that was in the machine when it died, and here it is:
+
+</p><pre>start,#:%,R,state0
+state0,0:0,R,state0
+state0,1:1,R,state0
+state0,#:#,S,state1
+state1,#:#,L,state1
+state1,$:$,L,state1
+state1,1:0,R,state2
+state1,0:1,L,state1
+state2,1:1,R,state2
+state2,0:0,R,state2
+state2,#:#,L,state3
+state2,$:$,L,state3
+state3,0:0,L,state3
+state3,1:1,R,state4
+state3,%:%,R,state5
+state4,0:0,R,state4
+state4,1:1,R,state4
+state5,1:1,R,state5
+state5,0:0,R,state5
+state5,#:#,S,state6
+state5,$:$,S,state6
+state4,#:#,S,state7
+state4,$:$,S,state7
+state7,#:$,R,state8
+state7,$:$,R,state9
+state8,1:1,R,state8
+state8,0:0,R,state8
+state8,#:#,R,state8
+state8,_:_,L,state10
+state10,#:$,L,state11
+state11,1:1,L,state11
+state11,0:0,L,state11
+state11,#:#,L,state11
+state11,$:$,R,state9
+state9,1:_,R,state12
+state9,0:_,R,state13
+state9,#:_,R,state14
+state9,$:$,S,state15
+state12,1:1,R,state12
+state12,0:0,R,state12
+state12,#:#,R,state12
+state12,$:$,R,state12
+state12,_:1,L,state16
+state16,1:1,L,state16
+state16,0:0,L,state16
+state16,#:#,L,state16
+state16,$:$,L,state16
+state16,_:1,R,state9
+state13,1:1,R,state13
+state13,0:0,R,state13
+state13,#:#,R,state13
+state13,$:$,R,state13
+state13,_:0,L,state17
+state17,1:1,L,state17
+state17,0:0,L,state17
+state17,#:#,L,state17
+state17,$:$,L,state17
+state17,_:0,R,state9
+state14,1:1,R,state14
+state14,0:0,R,state14
+state14,#:#,R,state14
+state14,$:$,R,state14
+state14,_:#,L,state18
+state18,1:1,L,state18
+state18,0:0,L,state18
+state18,#:#,L,state18
+state18,$:$,L,state18
+state18,_:#,R,state9
+state15,1:1,R,state15
+state15,0:0,R,state15
+state15,#:#,R,state15
+state15,$:$,R,state15
+state15,_:#,L,state19
+state19,1:1,L,state19
+state19,0:0,L,state19
+state19,#:#,L,state19
+state19,$:$,L,state20
+state20,1:1,L,state20
+state20,0:0,L,state20
+state20,#:#,L,state20
+state20,$:$,S,state1
+state6,1:1,R,state6
+state6,0:0,R,state6
+state6,#:#,R,state6
+state6,$:#,R,state6
+state6,_:_,L,state21
+state21,#:#,L,state22
+state22,1:1,L,state22
+state22,0:0,L,state22
+state22,#:#,L,state23
+state22,%:#,S,end
+state23,1:1,R,state23
+state23,0:0,R,state23
+state23,#:#,R,state23
+state23,_:_,L,state24
+state24,#:#,L,state25
+state25,0:0,L,state25
+state25,1:1,R,state26
+state25,#:#,R,state27
+state26,0:0,R,state26
+state26,1:1,R,state26
+state27,1:1,R,state27
+state27,0:0,R,state27
+state27,#:_,L,state28
+state26,#:#,L,state29
+state29,1:0,L,state30
+state29,0:1,L,state29
+state30,1:1,L,state30
+state30,0:0,L,state30
+state30,#:#,L,state31
+state31,1:0,L,state31
+state31,0:1,R,state32
+state32,1:1,R,state32
+state32,0:0,R,state32
+state32,#:#,R,state32
+state32,_:_,L,state21
+state28,1:_,L,state28
+state28,0:_,L,state28
+state28,#:#,S,state21
+</pre>
+
+<p></p>
+<p>Now we need this work to be done again and we need to find a solution soon, so we thought it would be a great idea
+ to make our contest participants (you) help us.</p>
+
+<h3>Input</h3>
+
+<code>Machine tape</code>
+
+<h3>Output</h3>
+
+<code>Machine tape ignoring the trailing blank spaces.</code>
+
+<h3>Sample input</h3>
+
+<code>#1#1#</code>
+
+<h3>Sample output</h3>
+
+<code>#1#</code>
+
+<h3>Limits</h3>
+<code>Input: max 256 chars</code></div>
+<div class="problem">
+	<h2>Submit &amp; test your code</h2>
+	<p>To test and submit code we provide a set of tools to help you. Download
+	<a href="https://contest.tuenti.net/Info/tools">contest tools</a> if you haven't already done that. You will then be able to test your solution to this
+	challenge with the challenge tokens.</p>
+	<code>Challenge tokens: CHALLENGE_16, CHALLENGE_SUBMIT_16</code>
+	<br>
+	<h3>To test your program</h3>
+	<code>./test_challenge CHALLENGE_16 path/program</code>
+	<p>A nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	<h3>To test your program against the input provided in the submit phase</h3>
+	<code>./test_challenge CHALLENGE_SUBMIT_16 path/program</code>
+	<p>During the submit phase, in some problems, we might give your program harder inputs. As with the test token, 
+	a nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	
+	<p>In the actual contest you first need to solve the test phase before 
+submitting the code, you must provide 
+	the source code used to solve the challenge and you can only submit 
+once (once your solution is submitted you won't be able to amend it to 
+fix issues 
+	or make it faster). </p>
+	
+	<p>If you have any doubts, please check the <a href="https://contest.tuenti.net/Info/about">info section</a>.</p>
+<h3>Problem stats</h3>
+		<div id="status">
+<table class="status">
+<tbody>
+<tr>
+	<th>Completion time:</th>
+	<td>
+		<b>10 percentile:</b> 2:02 h<br>
+		<b>90 percentile:</b> 22:51 h<br>
+	</td>
+</tr>
+<tr>
+	<th>Submit exec time:</th>
+	<td>
+		<b>min:</b> 0.62 s<br>
+		<b>10 percentile:</b> 0.73 s<br>
+		<b>90 percentile:</b> 26.44 s<br>
+		<b>max:</b> 1783.00 s<br>
+	</td>
+</tr>
+<tr>
+	<th>Test tries:</th>
+	<td>
+		<b>min:</b> 1<br>
+		<b>10 percentile:</b> 3<br>
+		<b>90 percentile:</b> 26<br>
+		<b>max:</b> 1080<br>
+	</td>
+</tr>
+<tr><th># of completions:</th><td>33</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+	<nav class="h-right" style="padding-top: 0;">
+		<a class="" href="https://contest.tuenti.net/Challenges?id=15"><span>« Prev</span></a>
+		<a class="" href="https://contest.tuenti.net/Challenges?id=17"><span>Next »</span></a>
+	</nav>
+</div>
+</div>
+</div>	<footer>
+		<div class="grid">
+			<p class="h-left">
+				Tweet about this! <a href="http://twitter.com/intent/tweet?text=%23TuentiChallenge3">#TuentiChallenge3</a>
+			</p>
+			<ul class="h-right scl-menu">
+				<li>
+					<a title="Share on Tuenti" href="http://www.tuenti.com/share" id="tuenti_share" class="tuenti-share-button" icon-style="dark" language="en-US" suggested-text="Share Tuenti Programming Contest in Tuenti!"><img src="Tuenti%20Challenge%203_files/dark_en.png" style="border: 0px none;"></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/Tuentieng" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false" data-dnt="true">Follow @Tuentieng</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-40515046-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+</body></html>

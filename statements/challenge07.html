@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="https://contest.tuenti.net/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/normalize.css">
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/contest.css">
+ 	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="Tuenti%20Challenge%203_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Tuenti%20Challenge%203_files/widgets.js"></script>
+
+	<title>Tuenti Challenge 3</title>
+</head>
+
+<body>
+	<header>
+		<div class="grid">
+			<h1 class="logo h-left"><a href="https://contest.tuenti.net/">Tuenti Challenge 3</a></h1>
+			<nav class="h-right">
+				<ul>
+					<li class="none"><a href="https://contest.tuenti.net/">Home</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/about">Info</a></li>
+					<li class="active"><a href="https://contest.tuenti.net/Challenges">Challenges</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/tools">Tools</a></li>
+									
+				</ul>
+			</nav>
+		</div>		
+	</header><div class="content">
+		<div class="grid">
+			<div class="problem">
+
+<h2><strong>Challenge 7</strong> - Boozzle</h2>
+<nav class="h-right">
+	<a class="" href="https://contest.tuenti.net/Challenges?id=6"><span>« Prev</span></a>
+	<a class="" href="https://contest.tuenti.net/Challenges?id=8"><span>Next »</span></a>
+</nav>
+
+<p>
+	Bob is really bad at Boozzle. He gets really angry when he loses against his friends and he has decided 
+	to do whatever it takes to win. He will pay a fortune for a machine that plays optimally.
+</p>
+
+<p>
+	Boozzle is played as follows. You are given a board of n rows and m columns. 
+	For each cell, there is a character, a score, and a score modifier. 
+	The goal is to find words in the board and achieve the maximum score possible in the given time. 
+	Words are built by joining adjacent cells in any direction (vertically, horizontally or diagonally).
+</p>
+
+<p>
+	The score for a word is given by
+</p>
+<center><code>
+	(S(c<sub>1</sub>)*CM(c<sub>1</sub>) + ... S(c<sub>j</sub>)*CM(c<sub>j</sub>)) * max(WM(c<sub>1</sub>),...,WM(c<sub>j</sub>)) + j
+</code></center>
+
+<p>
+	where
+</p>
+	
+<ul>
+	<li>
+		c<sub>1</sub>,...,c<sub>j</sub> is the path of cells that make up the word
+	</li>
+	<li>
+		S(c<sub>i</sub>) is the score for the character of the cell i
+	</li>
+	<li>
+		CM(c<sub>i</sub>) is the multiplier modifier for the score of the character 
+		(WM(c<sub>i</sub>)&gt;1 =&gt; CM(c<sub>i</sub>)=1)
+	</li>
+	<li>
+		WM(c<sub>i</sub>) is the multiplier modifier for the whole word 
+		(CM(c<sub>i</sub>)&gt;1 =&gt; WM(c<sub>i</sub>)=1)
+	</li>
+</ul>
+
+<p>
+	To help Bob, you have to develop an algorithm to control a robot that will play Boozzle optimally, 
+	taking into account the following:
+</p>
+
+	
+<ul>
+	<li>The interface with which the robot interacts is a touchscreen, so it has to select the words by using its 
+	"fingers", exactly like a human would.</li>
+	<li>Because of that, it takes time to submit a word. Specifically, <strong>it takes 1 second to 
+	select each of the cells that make up a word, plus 1 second more to press the "submit" button</strong>.</li>
+	<li>There is no extra delays between different words. (ie, it takes 11 seconds to submit two words 
+		of 4 and 5 characters, respectively)</li>
+	<li>The same word cannot be submitted twice, even if there are different paths for the same word.</li>
+	<li>All the cells building a word must be different (i.e., you cannot use the same cell twice for the same word).</li>
+	<li>The only valid words are the ones in 
+	<a href="http://staticak1.tuenti.com/contest2013/boozzle-dict.txt">this dictionary</a>.</li>
+	<li>Time spent computing the best words is not taken into account.</li>
+</ul>
+
+<h3>Input and limits</h3>
+<ul>
+	<li>First line of the input contains the number of problems, <b>N</b>
+	<br>1 ≤ <b>N</b> ≤ 10</li>
+	<li>Scores for each caracter follow
+	<br>{'A': 1, 'C': 3, 'B': 3, 'E': 1, 'D': 2, 'G': 2, 'F': 4, 'I': 1, 
+'H': 4, 'K': 5, 'J': 8, 'M': 3, 'L': 1, 'O': 1, 'N': 1, 'Q': 5, 'P': 3, 
+'S': 1, 'R': 1, 'U': 1, 'T': 1, 'W': 4, 'V`: 4, 'Y': 4, 'X': 8, 'Z': 10}</li>
+	<li>Next, the duration of the game in seconds, <b>W</b>
+	<br>1 ≤ <b>W</b> ≤ 300</li>
+	<li>Next, the number of rows, <b>n</b>
+	<br>1 ≤ <b>n</b> ≤ 50</li>
+	<li>Next, the number of columns, <b>m</b>
+	<br>1 ≤ <b>m</b> ≤ 50</li>
+	<li>And finally, the board: <b>n</b> rows with <b>m</b> cells. 
+	Each cell is represented by <b>Wxy</b> where W represents the character, x is the multiplier type and y is the multiplier value (1 ≤ y ≤ 3):
+	<br>
+	If x=1 (CM multiplier) then CM(ci) = y, WM(ci) = 1, 1 ≤ y ≤ 3
+	<br>
+	If x=2 (WM multiplier) then CM(ci)=1, WM(ci) = y, 1 ≤ y ≤ 3
+	</li>
+</ul>
+<h3>Output</h3>
+For each problem a line with the maximum score the robot could achieve. 
+
+
+<h3>Sample input</h3>
+<code>
+2<br>
+{'A': 1, 'C': 3, 'B': 3, 'E': 1, 'D': 2, 'G': 2, 'F': 4, 'I': 1, 'H': 4,
+ 'K': 5, 'J': 8, 'M': 3, 'L': 1, 'O': 1, 'N': 1, 'Q': 5, 'P': 3, 'S': 1,
+ 'R': 1, 'U': 1, 'T': 1, 'W': 4, 'V': 4, 'Y': 4, 'X': 8, 'Z': 10}<br>
+9<br>
+2<br>
+2<br>
+B11 B11<br>
+I11 P11<br>
+{'A': 1, 'C': 3, 'B': 3, 'E': 1, 'D': 2, 'G': 2, 'F': 4, 'I': 1, 'H': 4,
+ 'K': 5, 'J': 8, 'M': 3, 'L': 1, 'O': 1, 'N': 1, 'Q': 5, 'P': 3, 'S': 1,
+ 'R': 1, 'U': 1, 'T': 1, 'W': 4, 'V': 4, 'Y': 4, 'X': 8, 'Z': 10}<br>
+10<br>
+2<br>
+2<br>
+B11 B11<br>
+I11 P11<br>
+</code>
+
+<h3>Sample output</h3>
+
+<code>
+16<br>
+22<br>
+</code></div>
+<div class="problem">
+	<h2>Submit &amp; test your code</h2>
+	<p>To test and submit code we provide a set of tools to help you. Download
+	<a href="https://contest.tuenti.net/Info/tools">contest tools</a> if you haven't already done that. You will then be able to test your solution to this
+	challenge with the challenge tokens.</p>
+	<code>Challenge tokens: CHALLENGE_7, CHALLENGE_SUBMIT_7</code>
+	<br>
+	<h3>To test your program</h3>
+	<code>./test_challenge CHALLENGE_7 path/program</code>
+	<p>A nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	<h3>To test your program against the input provided in the submit phase</h3>
+	<code>./test_challenge CHALLENGE_SUBMIT_7 path/program</code>
+	<p>During the submit phase, in some problems, we might give your program harder inputs. As with the test token, 
+	a nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	
+	<p>In the actual contest you first need to solve the test phase before 
+submitting the code, you must provide 
+	the source code used to solve the challenge and you can only submit 
+once (once your solution is submitted you won't be able to amend it to 
+fix issues 
+	or make it faster). </p>
+	
+	<p>If you have any doubts, please check the <a href="https://contest.tuenti.net/Info/about">info section</a>.</p>
+<h3>Problem stats</h3>
+		<div id="status">
+<table class="status">
+<tbody>
+<tr>
+	<th>Completion time:</th>
+	<td>
+		<b>10 percentile:</b> 4:57 h<br>
+		<b>90 percentile:</b> 39:32 h<br>
+	</td>
+</tr>
+<tr>
+	<th>Submit exec time:</th>
+	<td>
+		<b>min:</b> 0.89 s<br>
+		<b>10 percentile:</b> 1.25 s<br>
+		<b>90 percentile:</b> 30.29 s<br>
+		<b>max:</b> 122.37 s<br>
+	</td>
+</tr>
+<tr>
+	<th>Test tries:</th>
+	<td>
+		<b>min:</b> 1<br>
+		<b>10 percentile:</b> 1<br>
+		<b>90 percentile:</b> 204<br>
+		<b>max:</b> 1890<br>
+	</td>
+</tr>
+<tr><th># of completions:</th><td>75</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+	<nav class="h-right" style="padding-top: 0;">
+		<a class="" href="https://contest.tuenti.net/Challenges?id=6"><span>« Prev</span></a>
+		<a class="" href="https://contest.tuenti.net/Challenges?id=8"><span>Next »</span></a>
+	</nav>
+</div>
+</div>
+</div>	<footer>
+		<div class="grid">
+			<p class="h-left">
+				Tweet about this! <a href="http://twitter.com/intent/tweet?text=%23TuentiChallenge3">#TuentiChallenge3</a>
+			</p>
+			<ul class="h-right scl-menu">
+				<li>
+					<a title="Share on Tuenti" href="http://www.tuenti.com/share" id="tuenti_share" class="tuenti-share-button" icon-style="dark" language="en-US" suggested-text="Share Tuenti Programming Contest in Tuenti!"><img src="Tuenti%20Challenge%203_files/dark_en.png" style="border: 0px none;"></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/Tuentieng" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false" data-dnt="true">Follow @Tuentieng</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-40515046-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+</body></html>

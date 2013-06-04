@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="https://contest.tuenti.net/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/normalize.css">
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/contest.css">
+ 	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="Tuenti%20Challenge%203_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Tuenti%20Challenge%203_files/widgets.js"></script>
+
+	<title>Tuenti Challenge 3</title>
+</head>
+
+<body>
+	<header>
+		<div class="grid">
+			<h1 class="logo h-left"><a href="https://contest.tuenti.net/">Tuenti Challenge 3</a></h1>
+			<nav class="h-right">
+				<ul>
+					<li class="none"><a href="https://contest.tuenti.net/">Home</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/about">Info</a></li>
+					<li class="active"><a href="https://contest.tuenti.net/Challenges">Challenges</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/tools">Tools</a></li>
+									
+				</ul>
+			</nav>
+		</div>		
+	</header><div class="content">
+		<div class="grid">
+			<div class="problem">
+
+<h2><strong>Challenge 9</strong> - Defenders of the Galaxy</h2>
+<nav class="h-right">
+	<a class="" href="https://contest.tuenti.net/Challenges?id=8"><span>« Prev</span></a>
+	<a class="" href="https://contest.tuenti.net/Challenges?id=10"><span>Next »</span></a>
+</nav>
+
+
+<p>The galaxy is infested with colonies of nasty creatures, called the <i>Zorg</i>. 
+Their only goal is to conquer and destroy every other form of intelligent life. 
+They arrived on our home planet a few hours ago, and their numbers are counted in the millions. 
+If they reach the capital city, all hope will be lost.</p>
+
+<p>The <i>Zorg</i> battle strategy is basically to overrun their enemies with thousands and 
+thousands of their minions, the <i>Zorglings</i>. 
+They are weak creatures, like big cockroaches, but they are fast (<b>1 m/s</b>, according to our observations).
+Inside each one of them is a powerful, short-ranged bio-explosive, triggered by their mind, 
+effectively converting them into moving grenades. Fortunately, to reach the walls of the great city 
+of <i>Azundys</i>, they have to pass through a narrow canyon of <b>W</b> meters wide (allowing only 
+<b>W</b> <i>Zorglings</i> to enter the canyon per second) and <b>H</b> meters long, 
+heavily defended by our allies, the <i>Protass</i>, standing at the end of the canyon.</p>
+
+<p>The <i>Protass</i> soldiers have laser guns. Each gun can fire once per second. 
+Laser impact is fatal for the <i>Zorglings</i>, and the elite soldiers 
+never miss a shot (this means that with 10 soldiers we can kill 10 <i>Zorglings</i> per second). 
+Each soldier's equipment and training cost <b>S</b> gold. 
+As soon as the <i>Zorlings</i> appear in the canyon entrance, they will be in range, so the soldiers 
+can shoot them.</p>
+
+<p>We also have a special weapon: the <i>Crematorium</i>. Its energy and fuel consumption are insane, 
+but it will burn all the <i>Zorglings</i> present to ashes 
+in the canyon at a given time. Each time the <i>Crematorium</i> is used, it costs <b>C</b> gold.</p>
+
+<p>If a single <i>Zorgling</i> reaches the end of the canyon, it will blow up, destroying the last city defenses, 
+and thus dooming the last standing
+free planet in this quadrant of the galaxy.</p>
+
+<p>Given that you have <b>G</b> gold, and all the data that was presented above, you must output how long you will 
+survive the attack, in seconds, with the most optimal configuration (how much you will spend in soldiers and how
+ much in <i>Crematoriums</i>). You must assume that the <i>Zorg</i> army 
+will be infinite, and they will try to enter the canyon continuously, with as many of them as they can.</p>
+
+<h3>Input</h3>
+<ul>
+<li><i>Integer <b>T</b></i>: Number of test cases.</li>
+<li><i>T</i> tests cases follow. For each test case, in a single line, whitespace-separated:
+<ul>
+<li><i>Integer <b>W</b></i>: width of the canyon, in meters
+</li><li><i>Integer <b>H</b></i>: length of the canyon, in meters
+</li><li><i>Integer <b>S</b></i>: price to train a soldier, in pieces of gold
+</li><li><i>Integer <b>C</b></i>: price to trigger a <i>Crematorium</i>, in pieces of gold
+</li><li><i>Integer <b>G</b></i>: amount of gold that you have
+</li></ul>
+</li></ul>
+
+<h3>Output</h3>
+<p>For each test case, the number of seconds you can resist. If you think you can take on the <i>Zorg</i> 
+overrun forever, output "-1" (without the quotes).</p>
+
+<h3>Example</h3>
+<p>Suppose there is a canyon of dimensions 3x2. You have 2 soldiers and 1 <i>Crematorium</i>. 
+The battle will unfold as follows (<i>Zorglings</i> are represented by a "v", the canyon walls with a "#", 
+and the city walls with a "-"):</p>
+
+<code>#···#<br>
+#···#<br>
+#---#</code>
+<p>Everything is ready. <i>t=0s</i></p>
+
+<code>#vvv#<br>
+#···#<br>
+#---#</code>
+<p><i>Zorglings</i> appear. <i>t=1s</i></p>
+
+<code>#··v#<br>
+#···#<br>
+#---#</code>
+<p>The 2 soldiers instantly kill 2 <i>Zorglings</i>. <i>t=1s</i></p>
+
+<code>#vvv#<br>
+#··v#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=2s</i></p>
+
+<code>#·vv#<br>
+#···#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=2s</i></p>
+
+<code>#vvv#<br>
+#·vv#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=3s</i></p>
+
+<code>#vvv#<br>
+#···#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=3s</i></p>
+
+<code>#vvv#<br>
+#vvv#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=4s</i></p>
+
+<code>#vvv#<br>
+#··v#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=4s</i></p>
+
+<code>#···#<br>
+#···#<br>
+#---#</code>
+<p>We have to use the <i>Crematorium</i> right now, killing every single <i>Zorgling</i> in the cannon. <i>t=4s</i></p>
+
+<code>#vvv#<br>
+#···#<br>
+#---#</code>
+<p><i>Zorglings</i> appear. <i>t=5s</i></p>
+
+<code>#··v#<br>
+#···#<br>
+#---#</code>
+<p>The 2 soldiers instantly kill 2 <i>Zorglings</i>. <i>t=5s</i></p>
+
+<code>#vvv#<br>
+#··v#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=6s</i></p>
+
+<code>#·vv#<br>
+#···#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=6s</i></p>
+
+<code>#vvv#<br>
+#·vv#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=7s</i></p>
+
+<code>#vvv#<br>
+#···#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=7s</i></p>
+
+<code>#vvv#<br>
+#vvv#<br>
+#---#</code>
+<p>More <i>Zorglings</i> appear. <i>t=8s</i></p>
+
+<code>#vvv#<br>
+#··v#<br>
+#---#</code>
+<p>The soldiers kill another 2 <i>Zorglings</i>. <i>t=8s</i></p>
+
+<p>In <i>t=9</i>, one <i>Zorgling</i> reaches the walls, destroying the defenses. So, in this case, the output you should give is <b>8 seconds</b>.</p>
+
+<h3>Sample input</h3>
+<code>2<br>
+10 20 50 100 400<br>
+10 20 50 100 500</code>
+
+<h3>Sample output</h3>
+<code>100<br>
+-1</code></div>
+<div class="problem">
+	<h2>Submit &amp; test your code</h2>
+	<p>To test and submit code we provide a set of tools to help you. Download
+	<a href="https://contest.tuenti.net/Info/tools">contest tools</a> if you haven't already done that. You will then be able to test your solution to this
+	challenge with the challenge tokens.</p>
+	<code>Challenge tokens: CHALLENGE_9, CHALLENGE_SUBMIT_9</code>
+	<br>
+	<h3>To test your program</h3>
+	<code>./test_challenge CHALLENGE_9 path/program</code>
+	<p>A nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	<h3>To test your program against the input provided in the submit phase</h3>
+	<code>./test_challenge CHALLENGE_SUBMIT_9 path/program</code>
+	<p>During the submit phase, in some problems, we might give your program harder inputs. As with the test token, 
+	a nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	
+	<p>In the actual contest you first need to solve the test phase before 
+submitting the code, you must provide 
+	the source code used to solve the challenge and you can only submit 
+once (once your solution is submitted you won't be able to amend it to 
+fix issues 
+	or make it faster). </p>
+	
+	<p>If you have any doubts, please check the <a href="https://contest.tuenti.net/Info/about">info section</a>.</p>
+<h3>Problem stats</h3>
+		<div id="status">
+<table class="status">
+<tbody>
+<tr>
+	<th>Completion time:</th>
+	<td>
+		<b>10 percentile:</b> 1:08 h<br>
+		<b>90 percentile:</b> 14:09 h<br>
+	</td>
+</tr>
+<tr>
+	<th>Submit exec time:</th>
+	<td>
+		<b>min:</b> 0.58 s<br>
+		<b>10 percentile:</b> 0.74 s<br>
+		<b>90 percentile:</b> 41.31 s<br>
+		<b>max:</b> 569.26 s<br>
+	</td>
+</tr>
+<tr>
+	<th>Test tries:</th>
+	<td>
+		<b>min:</b> 1<br>
+		<b>10 percentile:</b> 1<br>
+		<b>90 percentile:</b> 55<br>
+		<b>max:</b> 550<br>
+	</td>
+</tr>
+<tr><th># of completions:</th><td>88</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+	<nav class="h-right" style="padding-top: 0;">
+		<a class="" href="https://contest.tuenti.net/Challenges?id=8"><span>« Prev</span></a>
+		<a class="" href="https://contest.tuenti.net/Challenges?id=10"><span>Next »</span></a>
+	</nav>
+</div>
+</div>
+</div>	<footer>
+		<div class="grid">
+			<p class="h-left">
+				Tweet about this! <a href="http://twitter.com/intent/tweet?text=%23TuentiChallenge3">#TuentiChallenge3</a>
+			</p>
+			<ul class="h-right scl-menu">
+				<li>
+					<a title="Share on Tuenti" href="http://www.tuenti.com/share" id="tuenti_share" class="tuenti-share-button" icon-style="dark" language="en-US" suggested-text="Share Tuenti Programming Contest in Tuenti!"><img src="Tuenti%20Challenge%203_files/dark_en.png" style="border: 0px none;"></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/Tuentieng" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false" data-dnt="true">Follow @Tuentieng</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-40515046-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+</body></html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="https://contest.tuenti.net/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/normalize.css">
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/contest.css">
+ 	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="Tuenti%20Challenge%203_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Tuenti%20Challenge%203_files/widgets.js"></script>
+
+	<title>Tuenti Challenge 3</title>
+</head>
+
+<body>
+	<header>
+		<div class="grid">
+			<h1 class="logo h-left"><a href="https://contest.tuenti.net/">Tuenti Challenge 3</a></h1>
+			<nav class="h-right">
+				<ul>
+					<li class="none"><a href="https://contest.tuenti.net/">Home</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/about">Info</a></li>
+					<li class="active"><a href="https://contest.tuenti.net/Challenges">Challenges</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/tools">Tools</a></li>
+									
+				</ul>
+			</nav>
+		</div>		
+	</header><div class="content">
+		<div class="grid">
+			<div class="problem">
+
+<h2><strong>Challenge 8</strong> - Tuenti Timing Auth</h2>
+<nav class="h-right">
+	<a class="" href="https://contest.tuenti.net/Challenges?id=7"><span>« Prev</span></a>
+	<a class="" href="https://contest.tuenti.net/Challenges?id=9"><span>Next »</span></a>
+</nav>
+
+
+<p>
+Sometimes we need to protect highly secret data and use good sources of 
+entropy, like the weather, to seed our PRNGs. Sometimes we don't. What 
+did we do this time?
+</p>
+<p>
+Get the key to your key. <a href="http://pauth.contest.tuenti.net/">Go</a>.
+</p>
+
+<pre style="color:#55cc66;background:#001800;"><pre><span style="color:#808030; ">&lt;</span><span style="color:#800080; ">?</span>
+
+function get_unique<span style="color:#808030; ">(</span>$k<span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  $r <span style="color:#808030; ">=</span> unpack<span style="color:#808030; ">(</span><span style="color:#cc5555; ">'v*'</span><span style="color:#808030; ">,</span> <span style="color:#603000; ">fread</span><span style="color:#808030; ">(</span><span style="color:#603000; ">fopen</span><span style="color:#808030; ">(</span><span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">'/dev/urandom'</span><span style="color:#808030; ">,</span> <span style="color:#cc5555; ">'r'</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span><span style="color:#778c77; ">16</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+  $uuid <span style="color:#808030; ">=</span> <span style="color:#603000; ">sprintf</span><span style="color:#808030; ">(</span><span style="color:#ffffff; background:#dd0000; font-weight:bold; font-style:italic; ">'%04x%04x-%04x-%04x-%04x-%04x%04x%04x'</span><span style="color:#808030; ">,</span>
+    $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">1</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">2</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">3</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">4</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&amp;</span> <span style="color:#778c77; ">0x0fff</span> <span style="color:#808030; ">|</span> <span style="color:#778c77; ">0x4000</span><span style="color:#808030; ">,</span>
+    $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">5</span><span style="color:#808030; ">]</span> <span style="color:#808030; ">&amp;</span> <span style="color:#778c77; ">0x3fff</span> <span style="color:#808030; ">|</span> <span style="color:#778c77; ">0x8000</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">6</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">7</span><span style="color:#808030; ">]</span><span style="color:#808030; ">,</span> $r<span style="color:#808030; ">[</span><span style="color:#778c77; ">8</span><span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+  <span style="color:#508050; font-weight:bold; ">return</span> $uuid<span style="color:#800080; ">;</span>
+<span style="color:#800080; ">}</span>
+
+$keys <span style="color:#808030; ">=</span> json_decode<span style="color:#808030; ">(</span>file_get_contents<span style="color:#808030; ">(</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">../data/keys.json</span><span style="color:#800000; ">"</span><span style="color:#808030; ">)</span><span style="color:#808030; ">,</span> true<span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+
+<span style="color:#508050; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span>isset<span style="color:#808030; ">(</span>$_POST<span style="color:#808030; ">[</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">key</span><span style="color:#800000; ">"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">&amp;</span><span style="color:#808030; ">&amp;</span> isset<span style="color:#808030; ">(</span>$_POST<span style="color:#808030; ">[</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">pass</span><span style="color:#800000; ">"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+  $passwd <span style="color:#808030; ">=</span> get_unique<span style="color:#808030; ">(</span>$_POST<span style="color:#808030; ">[</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">key</span><span style="color:#800000; ">"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span>
+  sleep<span style="color:#808030; ">(</span><span style="color:#778c77; ">5</span><span style="color:#808030; ">)</span><span style="color:#800080; ">;</span> <span style="color:#b96969; ">// no bf this time!</span>
+
+  <span style="color:#508050; font-weight:bold; ">if</span> <span style="color:#808030; ">(</span><span style="color:#603000; ">strcmp</span><span style="color:#808030; ">(</span>$passwd<span style="color:#808030; ">,</span> $_POST<span style="color:#808030; ">[</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">pass</span><span style="color:#800000; ">"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">)</span> <span style="color:#808030; ">=</span><span style="color:#808030; ">=</span> <span style="color:#778c77; ">0</span><span style="color:#808030; ">)</span> <span style="color:#800080; ">{</span>
+    echo <span style="color:#800000; ">"</span><span style="color:#cc5555; ">welcome master</span><span style="color:#800000; ">"</span><span style="color:#800080; ">;</span>
+    echo <span style="color:#800000; ">"</span><span style="color:#cc5555; ">your key: </span><span style="color:#800000; ">"</span> <span style="color:#808030; ">.</span> $keys<span style="color:#808030; ">[</span>$_POST<span style="color:#808030; ">[</span><span style="color:#800000; ">"</span><span style="color:#cc5555; ">key</span><span style="color:#800000; ">"</span><span style="color:#808030; ">]</span><span style="color:#808030; ">]</span><span style="color:#800080; ">;</span>
+  <span style="color:#800080; ">}</span> <span style="color:#508050; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+    echo <span style="color:#800000; ">"</span><span style="color:#cc5555; ">impostor, only the chosen may pass.</span><span style="color:#800000; ">"</span><span style="color:#800080; ">;</span>
+  <span style="color:#800080; ">}</span>
+<span style="color:#800080; ">}</span> <span style="color:#508050; font-weight:bold; ">else</span> <span style="color:#800080; ">{</span>
+  echo <span style="color:#800000; ">"</span><span style="color:#cc5555; ">&lt;html&gt;&lt;head&gt;&lt;title&gt;keyz&lt;/title&gt;&lt;/head&gt;&lt;body&gt;&lt;form method='POST'&gt;key&lt;input type='text' name='key'&gt;&lt;br/&gt;pass&lt;input type='text' name='pass'&gt;&lt;br/&gt;&lt;input type='submit'&gt;</span><span style="color:#800000; ">"</span><span style="color:#800080; ">;</span>
+</pre></pre></div>
+<div class="problem">
+	<h2>Submit &amp; test your code</h2>
+	<p>To test and submit code we provide a set of tools to help you. Download
+	<a href="https://contest.tuenti.net/Info/tools">contest tools</a> if you haven't already done that. You will then be able to test your solution to this
+	challenge with the challenge tokens.</p>
+	<code>Challenge tokens: CHALLENGE_8, CHALLENGE_SUBMIT_8</code>
+	<br>
+	<h3>To test your program</h3>
+	<code>./test_challenge CHALLENGE_8 path/program</code>
+	<p>A nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	<h3>To test your program against the input provided in the submit phase</h3>
+	<code>./test_challenge CHALLENGE_SUBMIT_8 path/program</code>
+	<p>During the submit phase, in some problems, we might give your program harder inputs. As with the test token, 
+	a nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	
+	<p>In the actual contest you first need to solve the test phase before 
+submitting the code, you must provide 
+	the source code used to solve the challenge and you can only submit 
+once (once your solution is submitted you won't be able to amend it to 
+fix issues 
+	or make it faster). </p>
+	
+	<p>If you have any doubts, please check the <a href="https://contest.tuenti.net/Info/about">info section</a>.</p>
+<h3>Problem stats</h3>
+		<div id="status">
+<table class="status">
+<tbody>
+<tr>
+	<th>Completion time:</th>
+	<td>
+		<b>10 percentile:</b> 0:35 h<br>
+		<b>90 percentile:</b> 15:24 h<br>
+	</td>
+</tr>
+<tr>
+	<th>Submit exec time:</th>
+	<td>
+		<b>min:</b> 0.74 s<br>
+		<b>10 percentile:</b> 0.98 s<br>
+		<b>90 percentile:</b> 8.00 s<br>
+		<b>max:</b> 25.43 s<br>
+	</td>
+</tr>
+<tr>
+	<th>Test tries:</th>
+	<td>
+		<b>min:</b> 1<br>
+		<b>10 percentile:</b> 3<br>
+		<b>90 percentile:</b> 16<br>
+		<b>max:</b> 84<br>
+	</td>
+</tr>
+<tr><th># of completions:</th><td>44</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+	<nav class="h-right" style="padding-top: 0;">
+		<a class="" href="https://contest.tuenti.net/Challenges?id=7"><span>« Prev</span></a>
+		<a class="" href="https://contest.tuenti.net/Challenges?id=9"><span>Next »</span></a>
+	</nav>
+</div>
+</div>
+</div>	<footer>
+		<div class="grid">
+			<p class="h-left">
+				Tweet about this! <a href="http://twitter.com/intent/tweet?text=%23TuentiChallenge3">#TuentiChallenge3</a>
+			</p>
+			<ul class="h-right scl-menu">
+				<li>
+					<a title="Share on Tuenti" href="http://www.tuenti.com/share" id="tuenti_share" class="tuenti-share-button" icon-style="dark" language="en-US" suggested-text="Share Tuenti Programming Contest in Tuenti!"><img src="Tuenti%20Challenge%203_files/dark_en.png" style="border: 0px none;"></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/Tuentieng" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false" data-dnt="true">Follow @Tuentieng</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-40515046-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+</body></html>

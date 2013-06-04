@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"><!--<![endif]--><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width">
+
+	<link rel="icon" href="https://contest.tuenti.net/favicon.ico" type="image/x-icon">
+
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/normalize.css">
+	<link rel="stylesheet" href="Tuenti%20Challenge%203_files/contest.css">
+ 	
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script src="Tuenti%20Challenge%203_files/ga.js" async="" type="text/javascript"></script><script type="text/javascript" src="Tuenti%20Challenge%203_files/widgets.js"></script>
+
+	<title>Tuenti Challenge 3</title>
+</head>
+
+<body>
+	<header>
+		<div class="grid">
+			<h1 class="logo h-left"><a href="https://contest.tuenti.net/">Tuenti Challenge 3</a></h1>
+			<nav class="h-right">
+				<ul>
+					<li class="none"><a href="https://contest.tuenti.net/">Home</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/about">Info</a></li>
+					<li class="active"><a href="https://contest.tuenti.net/Challenges">Challenges</a></li>
+					<li class="none"><a href="https://contest.tuenti.net/Info/tools">Tools</a></li>
+									
+				</ul>
+			</nav>
+		</div>		
+	</header><div class="content">
+		<div class="grid">
+			<div class="problem">
+
+<h2><strong>Challenge 5</strong> - Dungeon Quest</h2>
+<nav class="h-right">
+	<a class="" href="https://contest.tuenti.net/Challenges?id=4"><span>« Prev</span></a>
+	<a class="" href="https://contest.tuenti.net/Challenges?id=6"><span>Next »</span></a>
+</nav>
+
+<p>You have been hired to implement a simple AI for a new action RPG game. 
+The game designers have given you the following specfications:</p>
+<p>
+The scenario of the game consists of a grid of <b>N x M</b> cells and your character can move forward, 
+right or left but never go back to the previous cell (like the classic cell phone game, Snake). 
+Your character moves at the speed of 1 cell per second. Once you beat the stage several gems appear 
+on random cells in the scenario and disappear after <b>Z</b> seconds. There are 3 different types of 
+gems with values of 1, 2 and 5. Your task is to implement an algorithm to find a path that maximizes 
+the total value of gems collected in the <b>Z</b> seconds they remain visible.
+</p>
+<p>
+For example, given the following 5 x 5 grid where the numbers indicate the value of the gems in the cells 
+and the character <b>x</b> is the current position of your character:
+</p>
+<code>
+<pre>2 - 2 - 2 - 0 - 0  
+|   |   |   |   | 
+0 - 2 - 2 - 0 - 0
+|   |   |   |   |
+0 - 0 - x - 5 - 0
+|   |   |   |   |
+0 - 0 - 0 - 5 - 0
+|   |   |   |   |
+0 - 0 - 0 - 0 - 0
+</pre>
+</code>
+<p>A possible solution for a given time of 6 seconds would be:</p>
+<code>
+<pre>2 - 2 - 2 - 0 - 0    2 - 2 - 2 - 0 - 0    2 - 2 - 2 - 0 - 0 
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 2 - 2 - 0 - 0    0 - 2 - 2 - 0 - 0    0 - 2 - 2 - 0 - 0
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - 0 - x - 0 =&gt; 0 - 0 - 0 - 0 - 0 =&gt; 0 - 0 - 0 - 0 - 0 
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - 0 - 5 - 0    0 - 0 - 0 - x - 0    0 - 0 - x - 0 - 0
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0
+
+2 - 2 - 2 - 0 - 0    2 - 2 - 2 - 0 - 0    2 - 2 - x - 0 - 0 
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 2 - 2 - 0 - 0    0 - 2 - x - 0 - 0    0 - 2 - 0 - 0 - 0
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - x - 0 - 0 =&gt; 0 - 0 - 0 - 0 - 0 =&gt; 0 - 0 - 0 - 0 - 0
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0
+|   |   |   |   |    |   |   |   |   |    |   |   |   |   |
+0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0    0 - 0 - 0 - 0 - 0
+</pre>
+</code>
+
+<p>With a final result of 14 in gem value</p>
+
+<h3>Input</h3> 
+<p>The first line of the input is the number of test cases that follows. Each problem has 5 lines:</p>
+<ul>
+<li><b>M, N</b>: width and height of the grid.</li>
+<li><b>X, Y</b>: initial position on the grid.</li>
+<li><b>Z</b>: number of seconds until the gems disappear.</li>
+<li><b>G</b>: number of gems in the grid. </li>
+<li><b>i0,j0,k0#i1,j1,k1#...#iT-1,kT-1,jT-1</b>: <b>iT, jT</b> are the coordinates of the Tth gem in the grid and <b>kT</b> is the value of the Tth gem.</li>
+</ul>
+<h3>Output:</h3>
+<p>The value of the gems collected for each test case, each one in a different line.</p>
+<h3>Sample input:</h3>
+<code>
+2<br>
+5,5<br>
+2,2<br>
+6<br>
+7<br>
+0,0,2#1,0,2#2,0,2#1,1,2#1,2,2#3,2,5#3,3,5<br>
+4,4<br>
+2,2<br>
+5<br>
+7<br>
+1,0,5#1,1,1#2,1,2#1,2,1#3,2,2#2,3,5#3,3,2<br>
+</code>
+<h3>Sample output:</h3>
+<code>
+14<br>
+12<br>
+</code>
+<h3>Limits:</h3>
+<ul>
+<li>3 ≤ <b>M</b> ≤ 100</li>
+<li>3 ≤ <b>N</b> ≤ 100</li>
+<li>2 ≤ <b>Z</b> ≤ 20</li>
+</ul></div>
+<div class="problem">
+	<h2>Submit &amp; test your code</h2>
+	<p>To test and submit code we provide a set of tools to help you. Download
+	<a href="https://contest.tuenti.net/Info/tools">contest tools</a> if you haven't already done that. You will then be able to test your solution to this
+	challenge with the challenge tokens.</p>
+	<code>Challenge tokens: CHALLENGE_5, CHALLENGE_SUBMIT_5</code>
+	<br>
+	<h3>To test your program</h3>
+	<code>./test_challenge CHALLENGE_5 path/program</code>
+	<p>A nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	<h3>To test your program against the input provided in the submit phase</h3>
+	<code>./test_challenge CHALLENGE_SUBMIT_5 path/program</code>
+	<p>During the submit phase, in some problems, we might give your program harder inputs. As with the test token, 
+	a nice output will tell you if your program got the right solution or not. You can try as
+	many times as you need.</p>
+	
+	<p>In the actual contest you first need to solve the test phase before 
+submitting the code, you must provide 
+	the source code used to solve the challenge and you can only submit 
+once (once your solution is submitted you won't be able to amend it to 
+fix issues 
+	or make it faster). </p>
+	
+	<p>If you have any doubts, please check the <a href="https://contest.tuenti.net/Info/about">info section</a>.</p>
+<h3>Problem stats</h3>
+		<div id="status">
+<table class="status">
+<tbody>
+<tr>
+	<th>Completion time:</th>
+	<td>
+		<b>10 percentile:</b> 2:22 h<br>
+		<b>90 percentile:</b> 41:25 h<br>
+	</td>
+</tr>
+<tr>
+	<th>Submit exec time:</th>
+	<td>
+		<b>min:</b> 0.93 s<br>
+		<b>10 percentile:</b> 1.56 s<br>
+		<b>90 percentile:</b> 2090.00 s<br>
+		<b>max:</b> 26531.00 s<br>
+	</td>
+</tr>
+<tr>
+	<th>Test tries:</th>
+	<td>
+		<b>min:</b> 1<br>
+		<b>10 percentile:</b> 1<br>
+		<b>90 percentile:</b> 23<br>
+		<b>max:</b> 99<br>
+	</td>
+</tr>
+<tr><th># of completions:</th><td>140</td></tr>
+</tbody>
+</table>
+</div>
+<br>
+	<nav class="h-right" style="padding-top: 0;">
+		<a class="" href="https://contest.tuenti.net/Challenges?id=4"><span>« Prev</span></a>
+		<a class="" href="https://contest.tuenti.net/Challenges?id=6"><span>Next »</span></a>
+	</nav>
+</div>
+</div>
+</div>	<footer>
+		<div class="grid">
+			<p class="h-left">
+				Tweet about this! <a href="http://twitter.com/intent/tweet?text=%23TuentiChallenge3">#TuentiChallenge3</a>
+			</p>
+			<ul class="h-right scl-menu">
+				<li>
+					<a title="Share on Tuenti" href="http://www.tuenti.com/share" id="tuenti_share" class="tuenti-share-button" icon-style="dark" language="en-US" suggested-text="Share Tuenti Programming Contest in Tuenti!"><img src="Tuenti%20Challenge%203_files/dark_en.png" style="border: 0px none;"></a>
+				</li>
+				<li>
+					<a href="https://twitter.com/Tuentieng" class="twitter-follow-button" data-show-count="false" data-lang="es" data-show-screen-name="false" data-dnt="true">Follow @Tuentieng</a>
+				</li>
+			</ul>
+		</div>
+	</footer>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-40515046-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+	</script>
+
+
+
+</body></html>
